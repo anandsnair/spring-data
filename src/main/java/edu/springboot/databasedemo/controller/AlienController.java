@@ -10,23 +10,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.springboot.databasedemo.model.Alien;
-import edu.springboot.databasedemo.repository.AlienRepository;
+import edu.springboot.databasedemo.service.AlienService;
 
 @RestController
 @RequestMapping("/api")
 public class AlienController {
 
 	@Autowired
-	AlienRepository aRepository;
+	AlienService alienService;
 	
 	@PostMapping("/alien")
 	public Alien createAlien(@RequestBody Alien alien) {
-		return aRepository.save(alien);
+		return alienService.createAlien(alien);
 	}
 	
 	@GetMapping("/aliens")
 	public List<Alien> getAllNotes() {
-	    return aRepository.findAll();
+	    return alienService.findAllAliens();
 	}
 
 }
